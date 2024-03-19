@@ -1,0 +1,20 @@
+services:
+  todo-app:
+    build:
+      context: .
+    depends_on:
+      - todo-database
+    environment:
+      NODE_ENV: development
+    ports:
+      - 3000:3000
+    command: npm start
+
+  todo-database:
+    image: postgres:14.4
+    environment:
+      POSTGRES_USER: shanemcelrath
+      POSTGRES_PASSWORD: password1234
+      POSTGRES_DB: graphqltestingdb
+    ports:
+      - 5432:5432
